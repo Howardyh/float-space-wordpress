@@ -1,14 +1,18 @@
-# FLOAT Space
+**简体中文** · [English](README.en.md)
 
-一个轻量的 WordPress 作品集主题：大字排版、克制的鼠标动效、中英文切换，以及深浅主题。前台使用原生 HTML、CSS 和 JavaScript，无需构建框架。
+# ✨ FLOAT Space · 让作品成为主角
+
+为你的作品和笔记准备一个简洁、舒适的展示空间。FLOAT Space 是轻量的 WordPress 作品集主题，提供大字排版、克制的鼠标动效、中英文切换与深浅主题；前台使用原生 HTML、CSS 和 JavaScript，无需构建框架。
+
+🎨 用主题呈现作品，🧩 按需启用配套插件管理项目与双语内容。从通用示例开始，逐步打造适合自己的作品集。
 
 公开版使用通用文案和原创 SVG。主题与配套插件分开安装；没有个人站点配置、联系方式、备案号码、账号、数据库、部署脚本或第三方游戏图片。
-
-[English documentation](README.en.md)
 
 ![通用版主题预览](theme/float-space/screenshot.png)
 
 ## 安装
+
+📦 准备好开始了吗？先下载可直接安装的主题与插件 ZIP。
 
 要求 WordPress 6.5+、PHP 8.1+。从本仓库的 **v1.1.0 Release** 下载安装包；本次主题版本为 1.1.0，配套插件保持 1.0.0。GitHub 的“Download ZIP”是源码仓库，不能直接作为主题安装。
 
@@ -21,6 +25,8 @@
 
 ## 功能
 
+🌗 从内容展示到日常阅读，常用体验都可以按需配置。
+
 - 原生文章与独立项目类型；双语标题、摘要和正文，英文留空时回退到中文。
 - 可编辑首页文案、自定义标志及导航；GitHub、邮箱、备案信息默认不显示。
 - 分层导航、项目简介和当前栏目提示；桌面空间不足时自动改用展开面板，手机面板包含语言与主题设置。
@@ -31,6 +37,8 @@
 主题单独启用时可显示首页与原生文章；项目管理和配置收藏需要配套插件。停用插件不会删除已保存的内容。
 
 ## 配置导航
+
+🧭 把作品、笔记和常用页面安排到访客容易找到的位置。
 
 在“外观 → 菜单”创建菜单，并指定到主导航位置。拖动菜单项可以调整顺序和父子关系；主题保留嵌套层级，建议常用导航以两层为主。页脚菜单只显示第一层。
 
@@ -59,13 +67,15 @@ python tools/build-release.py
 
 ## 开发与验证
 
+🛠️ 想继续定制？从源码和下面的验证命令开始。
+
 ```sh
 python -m unittest discover -s tests -p "test_*.py"
 ```
 
 CI 执行隐私扫描、PHP 语法检查、JavaScript 语法检查及隔离的 WordPress 集成测试。开发预览使用官方 [WordPress Playground CLI](https://wordpress.github.io/wordpress-playground/developers/local-development/wp-playground-cli/)，见 [开发说明](docs/DEVELOPMENT.md)。
 
-这是 GitHub 发布的经典主题，不代表已获 WordPress.org 主题目录审核。欢迎通过 issue 或 pull request 提交改进；报告问题时请清理截图、日志和配置中的个人信息。
+这是 GitHub 发布的经典主题，不代表已获 WordPress.org 主题目录审核。💬 欢迎通过 issue 分享使用反馈，或通过 pull request 一起改进；报告问题时请清理截图、日志和配置中的个人信息。
 
 ## 许可
 

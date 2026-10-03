@@ -1,12 +1,18 @@
-# FLOAT Space
+[简体中文](README.md) · **English**
 
-A lightweight classic WordPress portfolio theme with large typography, restrained pointer motion, Chinese/English content, and dark/light preferences. The frontend uses plain HTML, CSS and JavaScript with no build framework.
+# ✨ FLOAT Space · Put your work in the spotlight
+
+Give your projects and notes a clear, comfortable home. FLOAT Space is a lightweight classic WordPress portfolio theme with large typography, restrained pointer motion, Chinese/English content, and dark/light preferences. The frontend uses plain HTML, CSS and JavaScript with no build framework.
+
+🎨 Present your work with the theme, and 🧩 add the optional companion plugin for project management and bilingual content. Start with generic examples and shape the portfolio around your own work.
 
 This public edition contains generic copy and original SVG artwork. It includes a separate optional content plugin. It contains no production configuration, personal contact details, registration numbers, accounts, databases, deployment scripts or third-party game images.
 
 ![Public theme preview](theme/float-space/screenshot.png)
 
 ## Install
+
+📦 Ready to get started? Download the installable theme and plugin ZIPs first.
 
 Requires WordPress 6.5+ and PHP 8.1+. Download the installable ZIP files from this repository's **v1.1.0 Release**. This release contains theme version 1.1.0 and the unchanged companion plugin version 1.0.0. GitHub's source-code ZIP is not a theme installation package.
 
@@ -19,6 +25,8 @@ Plugin activation does not import projects, create users, migrate accounts or ov
 
 ## Features
 
+🌗 Tailor the essentials for presenting your work and reading comfortably.
+
 - Native posts, separate project content, and bilingual title/excerpt/body fields with a Chinese fallback.
 - Editable homepage, custom logo and navigation. Personal links and registration details are blank by default.
 - Hierarchical navigation, project descriptions and current-section indicators. A drawer replaces the desktop row when space is limited, and includes language/theme controls on mobile.
@@ -29,6 +37,8 @@ Plugin activation does not import projects, create users, migrate accounts or ov
 The theme supports the homepage and native posts without the plugin. Projects and collections require the companion plugin. Deactivation does not delete stored content.
 
 ## Configure navigation
+
+🧭 Keep projects, notes and useful pages easy for visitors to find.
 
 Create a menu in Appearance → Menus and assign it to the primary navigation location. Drag items to set their order and parent relationships. Nested levels are preserved; two levels are recommended for common navigation. The footer menu displays the first level only.
 
@@ -46,6 +56,8 @@ All bundled SVG graphics are original. Code and graphics are GPL-2.0-or-later. N
 
 ## Build
 
+🛠️ Want to make it your own? Start with the source and validation commands below.
+
 Requires Python 3.10+; no frontend build step is required.
 
 ```sh
@@ -57,5 +69,7 @@ python -m unittest discover -s tests -p "test_*.py"
 `dist/` contains two installable ZIP files and SHA-256 checksums. Packaging is restricted to the theme and plugin subdirectories. Manually review source and screenshots before release; automated scanners cannot prove the absence of every form of personal information.
 
 See [development instructions](docs/DEVELOPMENT.md) for isolated WordPress tests. This is a GitHub release, not a WordPress.org theme-directory approval.
+
+💬 Share feedback in an issue or contribute improvements through a pull request. Remove personal information from screenshots, logs and configuration before posting.
 
 Licensed under GPL-2.0-or-later; see [LICENSE](LICENSE).
