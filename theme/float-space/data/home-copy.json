@@ -1,0 +1,78 @@
+{
+  "heroStatement1": {
+    "zh": "把想法",
+    "en": "I build"
+  },
+  "heroStatement2": {
+    "zh": "做出来",
+    "en": "things"
+  },
+  "heroSubtitle1": {
+    "zh": "软件、硬件、服务器，",
+    "en": "Software, hardware, servers,"
+  },
+  "heroSubtitle2": {
+    "zh": "以及它们之间的一切。",
+    "en": "and everything in between."
+  },
+  "heroNote1": {
+    "zh": "这里记录我动手做的东西，",
+    "en": "A personal space for the things I build,"
+  },
+  "heroNote2": {
+    "zh": "拆开、重建，偶尔也发布。",
+    "en": "break, rebuild, and occasionally ship."
+  },
+  "aboutLead": {
+    "zh": "我喜欢动手做些东西，介于软件、硬件和好奇心之间。",
+    "en": "I enjoy building things that sit somewhere between software, hardware and curiosity."
+  },
+  "aboutDescription": {
+    "zh": "这个网站是我在互联网上的一小块空间，放着项目、实验、笔记，以及那些有趣到让我想把它们做出来的想法。",
+    "en": "This site is my personal corner of the internet — a place for projects, experiments, notes, and ideas that were interesting enough to turn into something real."
+  },
+  "aboutExtra1": {
+    "zh": "有时在折腾嵌入式设备。",
+    "en": "Sometimes I'm working on embedded devices."
+  },
+  "aboutExtra2": {
+    "zh": "有时在写软件。",
+    "en": "Sometimes I'm writing software."
+  },
+  "aboutExtra3": {
+    "zh": "有时只是把东西拆开，弄明白它为什么能工作。",
+    "en": "And sometimes I'm just figuring out how things work by taking them apart."
+  },
+  "aboutQuestionIntro": {
+    "zh": "这里的大部分项目，都从同一个问题开始：",
+    "en": "Most of the projects here started with the same question:"
+  },
+  "aboutQuestion1": {
+    "zh": "“如果我自己动手，",
+    "en": "“What if I built"
+  },
+  "aboutQuestion2": {
+    "zh": "会怎么样？”",
+    "en": "it myself?”"
+  },
+  "heroEyebrow": {
+    "zh": "创作空间 / 项目与笔记",
+    "en": "CREATIVE SPACE / PROJECTS & NOTES"
+  },
+  "aboutTitle": {
+    "zh": "关于这个空间",
+    "en": "About this space"
+  },
+  "featuredTitle1": {
+    "zh": "一扇小窗，",
+    "en": "A tiny window"
+  },
+  "featuredTitle2": {
+    "zh": "看见我的",
+    "en": "into my digital"
+  },
+  "featuredTitle3": {
+    "zh": "数字世界。",
+    "en": "world."
+  }
+}

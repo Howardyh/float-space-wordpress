@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "slots": [
+    {"id": "muzzle", "name": "枪口", "en": "Muzzle"},
+    {"id": "optic", "name": "瞄具", "en": "Optic"},
+    {"id": "stock", "name": "枪托", "en": "Stock"},
+    {"id": "grip", "name": "握把", "en": "Grip"},
+    {"id": "magazine", "name": "弹匣", "en": "Magazine"},
+    {"id": "other", "name": "其他", "en": "Other"}
+  ],
+  "weapons": [
+    {"id": "demo-rifle", "name": "示例步枪", "nameEn": "Demo Rifle", "icon": "/assets/images/demo/demo-rifle.svg"},
+    {"id": "demo-carbine", "name": "示例卡宾枪", "nameEn": "Demo Carbine", "icon": "/assets/images/demo/demo-carbine.svg"}
+  ],
+  "attachments": [
+    {"id": "demo-optic", "name": "示例瞄具", "nameEn": "Demo Optic", "slot": "optic", "icon": "/assets/images/demo/demo-optic.svg", "grade": 1},
+    {"id": "demo-grip", "name": "示例握把", "nameEn": "Demo Grip", "slot": "grip", "icon": "/assets/images/demo/demo-grip.svg", "grade": 1}
+  ]
+}

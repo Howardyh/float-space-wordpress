@@ -1,0 +1,187 @@
+@charset "UTF-8";
+
+:root {
+  --motion-ease: cubic-bezier(.22, .75, .25, 1);
+  --surface-glow: rgba(142, 156, 255, .12);
+  --control-glow: rgba(142, 156, 255, .16);
+}
+:root[data-theme="light"] {
+  --surface-glow: rgba(94, 106, 210, .075);
+  --control-glow: rgba(94, 106, 210, .15);
+}
+
+/* Feedback follows the existing controls; focus rings stay outside the effects. */
+.button {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition: transform .24s var(--motion-ease), background .2s, border-color .2s, box-shadow .24s;
+}
+.button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 20%, var(--control-glow) 50%, transparent 80%);
+  transform: translateX(-130%);
+  transition: transform .65s var(--motion-ease);
+}
+.button > span[aria-hidden] { transition: transform .24s var(--motion-ease); }
+.button:active { transform: translateY(1px) scale(.985); }
+.button:focus-visible { box-shadow: 0 0 0 6px var(--control-glow); }
+
+.preference-button, .date-controls button, .calendar-days button, .quiet-button, .menu-toggle {
+  transition: color .2s, background .2s, border-color .2s, transform .2s var(--motion-ease), box-shadow .2s;
+}
+:is(.preference-button, .date-controls button, .calendar-days button, .menu-toggle):active:not(:disabled) {
+  transform: scale(.94);
+}
+.quiet-button:active { transform: translateX(2px); }
+.theme-toggle svg { transition: transform .35s var(--motion-ease); }
+.date-controls button:disabled { box-shadow: none; transform: none; }
+
+.text-link, .primary-nav > a, .footer-nav > a, .breadcrumb, .project-evolution a {
+  position: relative;
+}
+.text-link::after, .primary-nav > a::after, .footer-nav > a::after, .breadcrumb::after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  left: 0;
+  right: 0;
+  bottom: 7px;
+  background: currentColor;
+  opacity: .6;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .28s var(--motion-ease);
+  pointer-events: none;
+}
+.primary-nav > a[aria-current]::after,
+:is(.text-link, .primary-nav > a, .footer-nav > a, .breadcrumb):focus-visible::after {
+  transform: scaleX(1);
+}
+.nav-github::after { left: 24px !important; }
+.next-project a > span[aria-hidden] { display: inline-block; transition: transform .28s var(--motion-ease); }
+.next-project a:focus-visible > span[aria-hidden] { transform: translate(5px, -3px); }
+
+/* The glow sits behind content and never turns the whole card into a link. */
+.motion-surface {
+  position: relative;
+  isolation: isolate;
+  transition: border-color .3s, box-shadow .3s;
+}
+.motion-surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(420px circle at var(--surface-x, 50%) var(--surface-y, 35%), var(--surface-glow), transparent 75%);
+  opacity: 0;
+  transition: opacity .4s;
+}
+.motion-surface:is(.is-surface-active, :focus-within)::before { opacity: 1; }
+.motion-surface:focus-within { border-color: var(--text-secondary); }
+.project-card-visual { transition: transform .45s var(--motion-ease); }
+.monitor-poster, .schedule-demo, .monitor-demo { transition: border-color .3s, box-shadow .3s; }
+.poster-bars i { transform-origin: bottom; transition: background-color .3s; }
+.status-dot { box-shadow: 0 0 0 0 transparent; transition: box-shadow .3s; }
+
+/* The selected date moves as one plate, even when the labels change language. */
+.js .calendar-days { --day-gap: 8px; position: relative; isolation: isolate; }
+.js .calendar-days::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: calc((100% - 2 * var(--day-gap)) / 3);
+  border: 1px solid var(--tone-303030);
+  border-radius: 6px;
+  background: var(--tone-181818);
+  transform: translateX(calc(var(--day-index, 1) * (100% + var(--day-gap))));
+  transition: transform .32s var(--motion-ease);
+  pointer-events: none;
+}
+.js .calendar-days button[aria-pressed="true"] { border-color: transparent; background: transparent; }
+.course summary { border-radius: 6px; transition: color .2s, background .2s; }
+.course summary:focus-visible { outline-offset: -3px; }
+.course-plus { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; transition: transform .26s var(--motion-ease), color .2s, background .2s; }
+.course[open] .course-plus { color: var(--text); background: var(--tone-ffffff08); }
+
+.monitor-tabs { position: relative; }
+.monitor-tabs.has-tab-indicator::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  width: var(--tab-width);
+  background: var(--tone-b7b7b7);
+  border-radius: 2px;
+  transform: translateX(var(--tab-left));
+  transition: width .3s var(--motion-ease), transform .3s var(--motion-ease);
+  pointer-events: none;
+}
+.monitor-tabs.has-tab-indicator button { border-bottom-color: transparent; }
+.monitor-tabs button { transition: color .2s; }
+.metric-track > span:not(.i18n-text) { transition: width .5s var(--motion-ease); }
+.sample-chart > i { transition: height .5s var(--motion-ease), background-color .25s; transition-delay: calc(var(--bar-order, 0) * 18ms); }
+.technical-list > div { transition: background .25s, box-shadow .25s; }
+
+/* Content is readable before observation, without JS, and with motion disabled. */
+.reveal-ready { transform: none; transition: none; }
+.reveal-ready.is-in-view { animation: content-arrive .65s var(--motion-ease); }
+.architecture.reveal-ready.is-in-view { animation: none; }
+.architecture.is-in-view > div { animation: content-arrive .5s var(--motion-ease) both; }
+.architecture.is-in-view > div:nth-of-type(2) { animation-delay: 70ms; }
+.architecture.is-in-view > div:nth-of-type(3) { animation-delay: 140ms; }
+.architecture.is-in-view > div:nth-of-type(4) { animation-delay: 210ms; }
+.project-card.is-in-view .poster-bars i { animation: bars-arrive .6s var(--motion-ease) both; animation-delay: calc(var(--bar-order, 0) * 25ms); }
+@keyframes content-arrive {
+  from { opacity: .6; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes bars-arrive {
+  from { transform: scaleY(.35); opacity: .5; }
+  to { transform: scaleY(1); opacity: 1; }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .button:hover { transform: translateY(-3px); box-shadow: 0 10px 24px -12px var(--control-glow); }
+  .button:hover::before { transform: translateX(130%); }
+  .button:hover > span[aria-hidden] { transform: translate(4px, -2px); }
+  .button:active { transform: translateY(1px) scale(.985); }
+  :is(.text-link, .primary-nav > a, .footer-nav > a, .breadcrumb):hover::after { transform: scaleX(1); }
+  .text-link:hover > span[aria-hidden] { transform: translate(5px, -2px); }
+  .preference-button:hover { transform: translateY(-2px); }
+  .preference-button:active { transform: scale(.94); }
+  .theme-toggle:hover svg { transform: rotate(24deg); }
+  .date-controls button:hover:not(:disabled) { border-color: var(--text-secondary); box-shadow: 0 0 0 3px var(--tone-ffffff03); }
+  .quiet-button:hover { transform: translateX(3px); }
+  .motion-surface:hover { border-color: var(--text-secondary); box-shadow: 0 18px 48px -30px rgba(0, 0, 0, .4); }
+  .project-card:hover .project-card-visual { transform: translateY(-3px); }
+  .schedule-demo:hover, .monitor-demo:hover { border-color: var(--tone-484848); }
+  :is(.schedule-demo, .monitor-demo):hover .status-dot { box-shadow: 0 0 0 4px var(--control-glow); }
+  .course summary:hover { color: var(--text); background: var(--tone-ffffff03); }
+  .course summary:hover .course-plus { color: var(--text); background: var(--tone-ffffff08); }
+  .project-card:hover .poster-bars i { background-color: var(--tone-a6a6a6); }
+  .monitor-tabs button:hover { color: var(--text); }
+  .technical-list > div:hover { background: var(--tone-ffffff03); box-shadow: inset 2px 0 var(--control-glow); }
+  .next-project a:hover > span[aria-hidden] { transform: translate(5px, -3px); }
+}
+@media (hover: none), (pointer: coarse) {
+  .button:hover { transform: none; }
+}
+@media (max-width: 359px) {
+  .js .calendar-days { --day-gap: 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .button, .preference-button, .date-controls button, .calendar-days button, .quiet-button, .menu-toggle,
+  .theme-toggle svg, .text-link > span[aria-hidden], .next-project a > span[aria-hidden] { transform: none !important; }
+  .motion-surface::before { display: none; }
+}

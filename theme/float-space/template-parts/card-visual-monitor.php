@@ -1,0 +1,2 @@
+<?php defined('ABSPATH') || exit; ?>
+<div class="monitor-poster" aria-hidden="true"><span class="micro" data-i18n="t4e24f12de769">信号 → 状态 → 屏幕</span><div class="poster-value">28<span>%</span></div><div class="poster-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="poster-labels"><span data-i18n="t48a6e01d3e0d">CPU / 虚构示例</span><span>WSS + HTTPS</span></div></div><figcaption data-i18n="t8a59409d7630">界面概念演示 · 虚构数值</figcaption>

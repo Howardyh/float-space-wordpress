@@ -1,0 +1,9 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "landingPage": "/",
+  "steps": [
+    {"step": "installPlugin", "pluginData": {"resource": "vfs", "path": "/packages/float-content-1.0.0.zip"}, "options": {"activate": true}},
+    {"step": "installTheme", "themeData": {"resource": "vfs", "path": "/packages/float-space-1.0.0.zip"}, "options": {"activate": true}},
+    {"step": "runPHP", "code": "<?php require '/tests/integration.php';"}
+  ]
+}
