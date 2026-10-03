@@ -104,6 +104,12 @@
     if (!isOpen()) header.classList.toggle('is-compact', window.scrollY > 24);
   }
 
+  function updatePanelPosition() {
+    // The WordPress toolbar and wrapped brand can change the actual header edge.
+    const bottom = Math.max(0, header.getBoundingClientRect().bottom);
+    header.style.setProperty('--navigation-panel-top', `${Math.ceil(bottom)}px`);
+  }
+
   function setPanel(open, restoreFocus = false) {
     open = Boolean(open && drawerMode);
     header.classList.toggle('menu-open', open);
@@ -113,6 +119,7 @@
     if (!open) closeAllSubmenus();
     updateMenuLabel();
     updateCompact();
+    updatePanelPosition();
     if (restoreFocus) focus(menuButton);
   }
 
@@ -158,6 +165,7 @@
       else panel.removeAttribute('aria-hidden');
     }
     header.classList.add('navigation-ready');
+    updatePanelPosition();
   }
 
   function queueLayout() {
@@ -264,8 +272,17 @@
     scrollFrame = window.requestAnimationFrame(() => {
       scrollFrame = 0;
       updateCompact();
+      updatePanelPosition();
     });
   }, {passive: true});
+  if ('ResizeObserver' in window) {
+    // A finite height transition may run after the layout/scroll frame.
+    const headerObserver = new ResizeObserver(updatePanelPosition);
+    headerObserver.observe(header);
+  }
+  header.addEventListener('transitionend', event => {
+    if (event.propertyName === 'min-height') updatePanelPosition();
+  });
   document.addEventListener('site:languagechange', () => {
     items.forEach(updateItemLabel);
     updateMenuLabel();

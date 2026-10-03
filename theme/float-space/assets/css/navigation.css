@@ -2,6 +2,7 @@
 .site-header {
   --navigation-height: 76px;
   --navigation-admin-offset: 0px;
+  --navigation-panel-top: calc(var(--navigation-height) + var(--navigation-admin-offset));
   isolation: isolate;
 }
 .admin-bar .site-header { --navigation-admin-offset: 32px; }
@@ -46,7 +47,7 @@
 .site-header .nav-submenu .nav-label { display: block; white-space: normal; overflow-wrap: anywhere; }
 .site-header .nav-submenu .nav-item + .nav-item { border-top: 1px solid var(--border); }
 .site-header .nav-submenu .nav-row { margin-block: 3px; }
-.js .site-header:not(.is-drawer) .nav-list > .nav-item > .nav-submenu { position: absolute; z-index: 4; top: 100%; left: 0; width: 320px; max-width: calc(100vw - 40px); max-height: calc(100vh - var(--navigation-height) - var(--navigation-admin-offset) - 32px); max-height: calc(100dvh - var(--navigation-height) - var(--navigation-admin-offset) - 32px - env(safe-area-inset-bottom, 0px)); margin-top: 10px; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; box-shadow: 0 18px 42px -18px #0009; }
+.js .site-header:not(.is-drawer) .nav-list > .nav-item > .nav-submenu { position: absolute; z-index: 4; top: 100%; left: 0; width: 320px; max-width: calc(100vw - 40px); max-height: calc(100vh - var(--navigation-panel-top) - 32px); max-height: calc(100dvh - var(--navigation-panel-top) - 32px - env(safe-area-inset-bottom, 0px)); margin-top: 10px; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; box-shadow: 0 18px 42px -18px #0009; }
 .js .site-header:not(.is-drawer) .nav-list > .nav-item:nth-last-child(-n + 2) > .nav-submenu { left: auto; right: 0; }
 .site-header .nav-submenu .nav-submenu { position: static; width: auto; min-width: 0; max-width: none; margin: 0 0 9px 14px; padding: 0 0 0 9px; border: 0; border-left: 1px solid var(--border); border-radius: 0; background: transparent; box-shadow: none; }
 .site-header .nav-submenu .nav-submenu .nav-link { padding: 11px 12px; }
@@ -71,7 +72,7 @@
 .site-header.menu-open .menu-symbol { transform: none; }
 .site-header.menu-open .menu-symbol::before { top: 7.5px; transform: rotate(45deg); }
 .site-header.menu-open .menu-symbol::after { top: 7.5px; transform: rotate(-45deg); }
-.site-header .nav-backdrop { display: none; position: fixed; z-index: 1; top: calc(var(--navigation-height) + var(--navigation-admin-offset)); left: 0; right: 0; bottom: 0; width: 100%; padding: 0; border: 0; background: #0005; cursor: default; }
+.site-header .nav-backdrop { display: none; position: fixed; z-index: 1; top: var(--navigation-panel-top); left: 0; right: 0; bottom: 0; width: 100%; padding: 0; border: 0; background: #0005; cursor: default; }
 .site-header :is(.brand, .nav-link, .nav-submenu-toggle, .navigation-github, .preference-button, .menu-toggle):focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
 
 /* Both a small viewport and an overfull custom menu use this disclosure. */
@@ -79,7 +80,7 @@
 .js .site-header.is-drawer .brand { flex: 0 1 auto; min-width: 0; margin-right: auto; }
 .js .site-header.is-drawer .brand-title { overflow-wrap: anywhere; }
 .js .site-header.is-drawer .menu-toggle { display: inline-flex; }
-.js .site-header.is-drawer .navigation-panel { position: absolute; z-index: 3; top: calc(100% + 12px); left: 0; right: 0; display: none; flex-direction: column; align-items: stretch; gap: 0; width: auto; max-height: calc(100vh - var(--navigation-height) - var(--navigation-admin-offset) - 28px); max-height: calc(100dvh - var(--navigation-height) - var(--navigation-admin-offset) - 28px - env(safe-area-inset-bottom, 0px)); margin: 0; padding: 15px; padding-bottom: calc(15px + env(safe-area-inset-bottom, 0px)); overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; border: 1px solid var(--border); border-radius: 12px; background: var(--bg); box-shadow: 0 20px 60px -25px #000a; }
+.js .site-header.is-drawer .navigation-panel { position: absolute; z-index: 3; top: calc(100% + 12px); left: 0; right: 0; display: none; flex-direction: column; align-items: stretch; gap: 0; width: auto; max-height: calc(100vh - var(--navigation-panel-top) - 28px); max-height: calc(100dvh - var(--navigation-panel-top) - 28px - env(safe-area-inset-bottom, 0px)); margin: 0; padding: 15px; padding-bottom: calc(15px + env(safe-area-inset-bottom, 0px)); overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; border: 1px solid var(--border); border-radius: 12px; background: var(--bg); box-shadow: 0 20px 60px -25px #000a; }
 .js .site-header.is-drawer.menu-open .navigation-panel { display: flex; animation: navigation-reveal 160ms ease both; }
 .js .site-header.is-drawer.menu-open .nav-backdrop { display: block; }
 .js .site-header.is-drawer .primary-nav { display: block; width: 100%; flex: none; margin: 0; padding: 0; border: 0; }
