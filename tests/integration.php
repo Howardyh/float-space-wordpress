@@ -71,7 +71,17 @@ wp_set_current_user($admins[0]->ID);
 foreach (array('monitor' => array('演示监控屏', 'Demo Monitor'), 'schedule' => array('演示课表', 'Demo Schedule')) as $kind => $titles) {
     wp_insert_post(array('post_type' => 'float_project', 'post_status' => 'publish', 'post_name' => 'demo-' . $kind, 'post_title' => $titles[0], 'post_excerpt' => '这是用于展示界面的虚构项目。', 'post_content' => '<p>这个项目只用于测试主题布局。</p>', 'meta_input' => array('_float_title_en' => $titles[1], '_float_excerpt_en' => 'A fictional project for theme layout testing.', '_float_content_en' => '<p>This project tests the theme layout.</p>', '_float_number' => $kind === 'monitor' ? '01' : '02', '_float_short' => $titles[0], '_float_short_en' => $titles[1], '_float_demo' => $kind, '_float_stack' => "HTML\nCSS\nJavaScript")));
 }
-wp_insert_post(array('post_type' => 'post', 'post_status' => 'publish', 'post_name' => 'demo-note', 'post_title' => '演示笔记', 'post_content' => '<p>记录一个简单的想法。</p>', 'meta_input' => array('_float_title_en' => 'Demo Note', '_float_content_en' => '<p>A simple idea worth writing down.</p>')));
+$native_note = wp_insert_post(array('post_type' => 'post', 'post_status' => 'publish', 'post_name' => 'demo-note', 'post_title' => '演示笔记', 'post_content' => '<p>记录一个简单的想法。</p>', 'meta_input' => array('_float_title_en' => 'Demo Note', '_float_content_en' => '<p>A simple idea worth writing down.</p>')));
+$saved_posts_page = get_option('page_for_posts');
+$saved_front_mode = get_option('show_on_front');
+$saved_global_post = $GLOBALS['post'] ?? null;
+update_option('page_for_posts', 0);
+update_option('show_on_front', 'posts');
+$GLOBALS['post'] = get_post($native_note);
+float_test(float_theme_notes_url() === home_url('/'), 'native blog URL does not inherit current loop post');
+update_option('page_for_posts', $saved_posts_page);
+update_option('show_on_front', $saved_front_mode);
+$GLOBALS['post'] = $saved_global_post;
 update_option('permalink_structure', '/%postname%/');
 flush_rewrite_rules();
 $summary = array('passed' => $float_checks, 'wordpress' => get_bloginfo('version'), 'php' => PHP_VERSION);

@@ -22,7 +22,8 @@ function float_theme_loadouts_page() {
     return $page;
 }
 function float_theme_notes_url() {
-    $page = get_post((int) get_option('page_for_posts'));
+    $page_id = (int) get_option('page_for_posts');
+    $page = $page_id > 0 ? get_post($page_id) : null;
     if ($page && $page->post_status === 'publish' && $page->post_password === '') return get_permalink($page);
     return get_option('show_on_front') === 'posts' ? home_url('/') : '';
 }
