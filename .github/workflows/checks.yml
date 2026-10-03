@@ -50,9 +50,14 @@ jobs:
           python-version: '3.12'
       - name: Build installation ZIPs
         run: python tools/build-release.py
+      - name: Generate explicit runtime Blueprint
+        run: >-
+          python tools/wordpress-blueprint.py
+          --php=${{ matrix.php }} --wp=${{ matrix.wp }}
+          --output="$RUNNER_TEMP/float-blueprint.json"
       - name: Isolated real WordPress integration
         run: >-
           npx --yes @wp-playground/cli@3.1.56 run-blueprint
           --wp=${{ matrix.wp }} --php=${{ matrix.php }}
           --mount=./dist:/packages
-          --mount=./tests:/tests --blueprint=./tests/blueprint.json
+          --mount=./tests:/tests --blueprint="$RUNNER_TEMP/float-blueprint.json"

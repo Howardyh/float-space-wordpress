@@ -45,6 +45,8 @@ add_action('wp_enqueue_scripts', function () {
             'assetsUrl' => float_theme_asset(''), 'pageUrl' => get_permalink(),
         ], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) . ';', 'before');
     }
+    wp_enqueue_style('float-navigation', float_theme_asset('css/navigation.css'), ['float-wordpress'], float_theme_version('css/navigation.css'));
+    wp_enqueue_script('float-navigation', float_theme_asset('js/navigation.js'), ['float-main'], float_theme_version('js/navigation.js'), true);
 });
 function float_theme_text($zh, $en = '', $tag = 'span', $class = '') {
     $tag = in_array($tag, ['span', 'p', 'h1', 'h2', 'h3', 'strong', 'small', 'a', 'div'], true) ? $tag : 'span';
@@ -116,27 +118,7 @@ function float_theme_password_gate($post = null) {
     echo '<main id="main" tabindex="-1"><article class="container"><header class="detail-hero"><h1>' . esc_html(get_the_title($post)) . '</h1></header><div class="wp-content-body">' . get_the_password_form($post) . '</div></article></main>';
     return true;
 }
-function float_theme_nav($location) {
-    if (has_nav_menu($location)) { wp_nav_menu(['theme_location' => $location, 'container' => false, 'items_wrap' => '%3$s', 'depth' => 1, 'walker' => new Float_Space_Menu_Walker()]); return; }
-    $items = []; $archive = post_type_exists('float_project') ? get_post_type_archive_link('float_project') : '';
-    if ($archive) $items[] = [$archive, '项目', 'Projects', is_post_type_archive('float_project') || is_singular('float_project')];
-    $loadouts = float_theme_loadouts_page();
-    if ($loadouts && function_exists('float_space_public_loadouts')) $items[] = [get_permalink($loadouts), '配置收藏', 'Collections', is_page($loadouts->ID)];
-    if (get_option('show_on_front') === 'page') $items[] = [home_url('/#about'), '关于', 'About', false];
-    else $items[] = [home_url('/'), '首页', 'Home', is_front_page()];
-    if ($notes = float_theme_notes_url()) $items[] = [$notes, '笔记', 'Notes', is_home() || is_singular('post')];
-    foreach ($items as [$url, $zh, $en, $current]) printf('<a href="%s"%s data-wp-zh="%s" data-wp-en="%s">%s</a>', esc_url($url), $current ? ' aria-current="page"' : '', esc_attr($zh), esc_attr($en), esc_html($zh));
-    if (float_theme_github()) printf('<a class="nav-github" href="%s" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span><span class="sr-only" data-i18n="t1d1833565142">（在新标签页打开）</span></a>', float_theme_github());
-}
-class Float_Space_Menu_Walker extends Walker_Nav_Menu {
-    public function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
-        $current = in_array('current-menu-item', (array) $item->classes, true); $target = $item->target === '_blank' ? ' target="_blank" rel="noopener noreferrer"' : '';
-        $translations = ['项目' => 'Projects', '配置收藏' => 'Collections', '关于' => 'About', '笔记' => 'Notes', '首页' => 'Home'];
-        $bilingual = isset($translations[$item->title]) ? ' data-wp-zh="' . esc_attr($item->title) . '" data-wp-en="' . esc_attr($translations[$item->title]) . '"' : '';
-        $output .= '<a href="' . esc_url($item->url) . '"' . $target . ($current ? ' aria-current="page"' : '') . $bilingual . '>' . esc_html($item->title) . '</a>';
-    }
-    public function end_el(&$output, $item, $depth = 0, $args = null) {}
-}
+require_once get_template_directory() . '/inc/navigation.php';
 add_filter('body_class', function ($classes) { if (float_theme_is_loadouts()) $classes[] = 'armory-page'; return $classes; });
 add_action('wp_head', function () {
     if (is_404()) return;

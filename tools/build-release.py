@@ -10,16 +10,17 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '1.0.0'
+VERSIONS = {'float-space': '1.1.0', 'float-content': '1.0.0'}
 ALLOWED = {'.php', '.css', '.js', '.json', '.svg', '.txt', '.md', '.png'}
 TEXT = ALLOWED - {'.png'}
 
 def build_package(parent: str, slug: str, main_file: str) -> Path:
+    version = VERSIONS[slug]
     source = ROOT / parent / slug
     assert source.is_dir(), f'Missing source folder: {parent}/{slug}'
     header = (source / main_file).read_text(encoding='utf-8')
-    assert re.search(r'Version:\s*' + re.escape(VERSION) + r'\b', header), 'Version mismatch'
-    target = ROOT / 'dist' / f'{slug}-{VERSION}.zip'
+    assert re.search(r'Version:\s*' + re.escape(version) + r'\b', header), 'Version mismatch'
+    target = ROOT / 'dist' / f'{slug}-{version}.zip'
     with zipfile.ZipFile(target, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
         for item in sorted(source.rglob('*')):
             assert not item.is_symlink(), f'Symlink rejected: {item.relative_to(ROOT)}'

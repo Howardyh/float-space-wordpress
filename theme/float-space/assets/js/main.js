@@ -4,46 +4,6 @@
 document.documentElement.classList.add('js');
 window.SitePreferences.initialize();
 
-const menuButton = document.querySelector('.menu-toggle');
-const navigation = document.querySelector('.primary-nav');
-const siteHeader = document.querySelector('.site-header');
-const mobile = window.matchMedia('(max-width: 1023px)');
-
-function setMenu(open, restoreFocus = false) {
-  siteHeader.classList.toggle('menu-open', open);
-  menuButton.setAttribute('aria-expanded', String(open));
-  window.SitePreferences.setText(menuButton.querySelector('span:first-child'), open ? 'Close' : 'Menu');
-  if (restoreFocus) menuButton.focus();
-}
-
-menuButton.addEventListener('click', () => {
-  setMenu(menuButton.getAttribute('aria-expanded') !== 'true');
-});
-
-navigation.addEventListener('click', event => {
-  if (event.target.closest('a')) setMenu(false);
-});
-
-document.addEventListener('keydown', event => {
-  if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {
-    setMenu(false, true);
-  }
-});
-
-document.addEventListener('click', event => {
-  if (!siteHeader.contains(event.target) && menuButton.getAttribute('aria-expanded') === 'true') {
-    setMenu(false);
-  }
-});
-
-siteHeader.addEventListener('focusout', event => {
-  if (mobile.matches && event.relatedTarget && !siteHeader.contains(event.relatedTarget)) setMenu(false);
-});
-
-mobile.addEventListener('change', () => setMenu(false));
-document.addEventListener('site:languagechange', () => {
-  setMenu(menuButton.getAttribute('aria-expanded') === 'true');
-});
 document.querySelectorAll('[data-year]').forEach(element => {
   element.textContent = String(new Date().getFullYear());
 });

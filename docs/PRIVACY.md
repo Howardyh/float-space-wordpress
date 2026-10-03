@@ -6,7 +6,9 @@ The theme has no analytics, tracking pixel, advertising integration or connectio
 
 The optional plugin lets an authorized administrator import draft files and publish validated configuration records. Publishing deliberately makes selected records publicly readable. Drafts and password-protected records are excluded from the collection endpoint. Public project/article/page content is subject to WordPress visibility settings.
 
-**Public fields are public:** names, contact email, links, registration labels, image captions, published posts and project metadata may appear in HTML, feeds or API responses. Do not use them to store credentials or sensitive infrastructure details. WordPress user profiles, other plugins and the hosting service have their own privacy behavior; review them before deployment.
+The default project navigation includes only published projects without password protection. An explicitly configured WordPress menu is authored by the site owner: its labels, English labels, bilingual descriptions and URLs appear in the page output. Review custom menu items before saving, including manually entered links to restricted content. Navigation does not create users, import menus or transmit preferences to an external service.
+
+**Public fields are public:** names, contact email, links, registration labels, menu labels and descriptions, image captions, published posts and project metadata may appear in HTML, feeds or API responses. Do not use them to store credentials or sensitive infrastructure details. WordPress user profiles, other plugins and the hosting service have their own privacy behavior; review them before deployment.
 
 The release repository excludes database files, private keys, environment files, uploads, production configuration, deployment logs and backups. The privacy gate checks source and ZIP members for common secret formats and unintended operational files. An optional private denylist supports checks for site-specific names and identifiers without adding them to the public repository:
 
