@@ -100,6 +100,7 @@
 .js .site-header.is-drawer [data-theme-label] { position: static; width: auto; height: auto; overflow: visible; clip-path: none; white-space: normal; }
 
 /* Native lists remain usable when scripting is unavailable. */
+html:not(.js) .site-header { position: relative; top: auto; }
 html:not(.js) .site-header .header-inner { align-items: flex-start; padding-block: 14px; }
 html:not(.js) .site-header .navigation-panel { align-items: flex-start; }
 html:not(.js) .site-header .nav-list { flex-wrap: wrap; justify-content: flex-start; }
